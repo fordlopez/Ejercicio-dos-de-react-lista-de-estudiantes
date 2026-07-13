@@ -8,21 +8,26 @@ import { useState } from 'react'
 
 function App() {
 /*   const [count, setCount] = useState(0) */
-const [estudiantes,setEstudiantes]= useState({
-  id:1,
-nobre:"Juan",
-  correo:'juan@gmai.com',
-  telefono:'1234567',
-  curso:'desarrolloo de sofr',
-  activo:true,
-},{
-  id:2,
-nobre:"Juan2",
-  correo:'juan@gmai.com',
-  telefono:'1234567',
-  curso:'desarrolloo de sofr',
-  activo:false,
-})
+const [estudiantes, setEstudiantes] = useState([
+  {
+    id: 1,
+    nombre: "Juan",
+    correo: "juan@gmail.com",
+    telefono: "1234567",
+    curso: "Desarrollo de Software",
+    estado:"aprobado",
+    activo: true,
+  },
+  {
+    id: 2,
+    nombre: "Juan2",
+    correo: "juan2@gmail.com",
+    telefono: "1234567",
+    curso: "Desarrollo de Software",
+     estado:"aprobado",
+    activo: false,
+  }
+]);
 
 const eliinarEstudiantes=(id)=>{
   let nuevosEstudiantes= [...estudiantes]

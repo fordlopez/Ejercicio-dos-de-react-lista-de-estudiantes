@@ -28,18 +28,17 @@ function ListaEstudiantes({estudiantes,onElininar}){
     <th scope="col">acciones</th>
 </tr>
 </thead>
-</table>
+
 <tbody> {
     estudiantes.map((estudiantes)=>(
         <Estudiante key={estudiantes.id} {...estudiantes} onElininar={onElininar}/>
     ))
     } 
 
-     <Estudiante/>
-     <Estudiante/> 
    
 
 </tbody>
+</table>
         </section>
 
 
