@@ -1,32 +1,21 @@
 import { Estudiante } from '../Estudiante/Estudiante'
 import Form from '../Estudiante/Form'
+import { EstudianteContext } from '../context/EstudianteContext.jsx'
 import Modal from '../Modal/Modal'
 import "./ListaEstudiantes.css"
-import { useState } from 'react'
+import { useContext } from 'react'
 
-function ListaEstudiantes({ estudiantes, onEliminar, onGuardar }) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [estudianteEnEdicion, setEstudianteEnEdicion] = useState(null)
-
-  const abrirCrear = () => {
-    setEstudianteEnEdicion(null)
-    setIsModalOpen(true)
-  }
-
-  const abrirEditar = (estudiante) => {
-    setEstudianteEnEdicion(estudiante)
-    setIsModalOpen(true)
-  }
-
-  const cerrarModal = () => {
-    setIsModalOpen(false)
-    setEstudianteEnEdicion(null)
-  }
-
-  const guardarDesdeFormulario = (estudianteForm) => {
-    onGuardar(estudianteForm)
-    cerrarModal()
-  }
+function ListaEstudiantes() {
+  const {
+    estudiantes,
+    eliminarEstudiante,
+    activarEstudiante,
+    isModalOpen,
+    estudianteEnEdicion,
+    abrirCrear,
+    abrirEditar,
+    cerrarModal,
+  } = useContext(EstudianteContext)
 
   return (
     <section className="tabla-estudiantes" aria-labelledby="titulo-estudiantes">
@@ -40,8 +29,6 @@ function ListaEstudiantes({ estudiantes, onEliminar, onGuardar }) {
         <Form
           key={estudianteEnEdicion?.id ?? 'nuevo'}
           initialValues={estudianteEnEdicion}
-          onSubmit={guardarDesdeFormulario}
-          onCancel={cerrarModal}
         />
       </Modal>
 
@@ -71,8 +58,9 @@ function ListaEstudiantes({ estudiantes, onEliminar, onGuardar }) {
             <Estudiante
               key={estudiante.id}
               {...estudiante}
-              onEliminar={onEliminar}
               onEditar={abrirEditar}
+              onEliminar={eliminarEstudiante}
+              onActivo={activarEstudiante}
             />
           ))}
         </tbody>
@@ -82,3 +70,23 @@ function ListaEstudiantes({ estudiantes, onEliminar, onGuardar }) {
 }
 
 export { ListaEstudiantes }
+
+/* function ListaEstudiantes({ estudiantes, onGuardar, onEliminar, onActivo }) {
+  // ...igual que antes...
+
+  return (
+    // ...
+        <tbody>
+          {estudiantes.map((estudiante) => (
+            <Estudiante
+              key={estudiante.id}
+              {...estudiante}
+              onEditar={abrirEditar}
+              onEliminar={onEliminar}
+              onActivo={onActivo}
+            />
+          ))}
+        </tbody>
+    // ...
+  )
+} */

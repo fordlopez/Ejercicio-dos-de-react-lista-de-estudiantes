@@ -1,4 +1,9 @@
-function Estudiante({ id, nombre, correo, telefono, curso, estado, activo, onEliminar, onEditar }) {
+
+
+
+function Estudiante({ id, nombre, correo, telefono, curso, estado, activo, onEliminar, onEditar ,onActivo }) {
+
+
   return (
     <tr>
       <td>{nombre}</td>
@@ -17,6 +22,9 @@ function Estudiante({ id, nombre, correo, telefono, curso, estado, activo, onEli
         </button>
         <button className="btn-eliminar" onClick={() => onEliminar(id)}>
           Eliminar
+        </button>
+           <button className="btn-editar active"  onClick={()=> onActivo(id)} >
+          {!activo? "Activar":"Desactivar"}
         </button>
       </td>
     </tr>

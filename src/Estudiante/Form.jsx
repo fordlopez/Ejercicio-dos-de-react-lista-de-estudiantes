@@ -1,5 +1,5 @@
-
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { EstudianteContext } from '../context/EstudianteContext.jsx'
 
 const VALORES_INICIALES = {
 	nombre: '',
@@ -10,7 +10,9 @@ const VALORES_INICIALES = {
 	activo: true,
 }
 
-function Form({ initialValues, onSubmit, onCancel }) {
+function Form({ initialValues }) {
+	const { guardarEstudiante, cerrarModal } = useContext(EstudianteContext)
+
 	const [formData, setFormData] = useState(() => {
 		if (!initialValues) {
 			return VALORES_INICIALES
@@ -37,7 +39,7 @@ function Form({ initialValues, onSubmit, onCancel }) {
 	const enviarFormulario = (event) => {
 		event.preventDefault()
 
-		onSubmit?.({
+		guardarEstudiante({
 			id: initialValues?.id,
 			nombre: formData.nombre.trim(),
 			correo: formData.correo.trim(),
@@ -53,56 +55,27 @@ function Form({ initialValues, onSubmit, onCancel }) {
 			<div className="form-estudiante__grid">
 				<label>
 					Nombre
-					<input
-						type="text"
-						name="nombre"
-						value={formData.nombre}
-						onChange={actualizarCampo}
-						required
-					/>
+					<input type="text" name="nombre" value={formData.nombre} onChange={actualizarCampo} required />
 				</label>
 
 				<label>
 					Correo
-					<input
-						type="email"
-						name="correo"
-						value={formData.correo}
-						onChange={actualizarCampo}
-						required
-					/>
+					<input type="email" name="correo" value={formData.correo} onChange={actualizarCampo} required />
 				</label>
 
 				<label>
 					Telefono
-					<input
-						type="tel"
-						name="telefono"
-						value={formData.telefono}
-						onChange={actualizarCampo}
-						required
-					/>
+					<input type="tel" name="telefono" value={formData.telefono} onChange={actualizarCampo} required />
 				</label>
 
 				<label>
 					Curso
-					<input
-						type="text"
-						name="curso"
-						value={formData.curso}
-						onChange={actualizarCampo}
-						required
-					/>
+					<input type="text" name="curso" value={formData.curso} onChange={actualizarCampo} required />
 				</label>
 
 				<label>
 					Estado
-					<select
-						name="estado"
-						value={formData.estado}
-						onChange={actualizarCampo}
-						required
-					>
+					<select name="estado" value={formData.estado} onChange={actualizarCampo} required>
 						<option value="Insolvente">Insolvente</option>
 						<option value="Solvente">Solvente</option>
 						<option value="Expulsado">Expulsado</option>
@@ -110,18 +83,13 @@ function Form({ initialValues, onSubmit, onCancel }) {
 				</label>
 
 				<label className="form-estudiante__activo">
-					<input
-						type="checkbox"
-						name="activo"
-						checked={formData.activo}
-						onChange={actualizarCampo}
-					/>
+					<input type="checkbox" name="activo" checked={formData.activo} onChange={actualizarCampo} />
 					Activo
 				</label>
 			</div>
 
 			<div className="form-estudiante__acciones">
-				<button type="button" className="btn btn--ghost" onClick={onCancel}>
+				<button type="button" className="btn btn--ghost" onClick={cerrarModal}>
 					Cancelar
 				</button>
 				<button type="submit" className="btn btn--solid">

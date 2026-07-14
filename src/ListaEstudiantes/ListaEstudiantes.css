@@ -94,6 +94,11 @@
   background: #ffe9e9;
   color: #ad2020;
 }
+.active{
+  margin-right: 0.45rem;
+  background: #eaf1ff;
+  color: #119c5b;
+}
 
 .form-estudiante {
   margin-top: 0.8rem;
