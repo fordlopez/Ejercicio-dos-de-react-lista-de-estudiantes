@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { EstudianteContext } from '../context/EstudianteContext.jsx'
+import { EstudianteContext } from '../EstudiantesContex/EstudiantesContex.jsx'
 
 const VALORES_INICIALES = {
 	nombre: '',

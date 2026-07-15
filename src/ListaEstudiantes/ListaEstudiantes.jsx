@@ -1,6 +1,6 @@
 import { Estudiante } from '../Estudiante/Estudiante'
 import Form from '../Estudiante/Form'
-import { EstudianteContext } from '../context/EstudianteContext.jsx'
+import { EstudianteContext } from '../EstudiantesContex/EstudiantesContex.jsx'
 import Modal from '../Modal/Modal'
 import "./ListaEstudiantes.css"
 import { useContext } from 'react'

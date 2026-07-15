@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { EstudianteProvider } from './context/EstudianteContext.jsx'
+import { EstudianteProvider } from './EstudiantesContex/EstudiantesContex.jsx'
 import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
